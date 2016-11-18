@@ -26,4 +26,32 @@ class Stack
   # s.show
   # s.remove
   # s.show
-  
+class Queue
+  attr_accessor :queue
+
+  def initialize
+    @queue = []
+  end
+
+  def enqueue(el)
+    queue.unshift(el)
+  end
+
+  def dequeue
+    queue.pop
+  end
+
+  def show
+    p queue
+  end
+
+end
+
+q = Queue.new
+q.enqueue(2)
+q.enqueue(3)
+q.enqueue(4)
+q.show
+p q.dequeue
+p q.dequeue
+q.show 
