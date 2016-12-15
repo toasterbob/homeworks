@@ -163,6 +163,7 @@ window.setTimeout(function () {
 }, 2000);
 
 
+
 setInterval(function() {
   console.log("I'm watching you");
 }, 5000)
@@ -184,15 +185,102 @@ new1(3)
 new2(2)
 
 
+class Bicycle {
+  constructor(model, color) {
+    this.model = model;
+    this.color = color;
+  }
+
+  action() {
+    return "rolls along";
+  }
+
+  ride() {
+    console.log(
+      `The ${this.color} ${this.model}
+      goes "whoosh" and ${this.action()}!`
+      );
+  }
+
+  static parade() {
+    Bicycle.funBicycles.forEach(bike => bike.ride());
+  }
+}
+
+const cruiser = new Bicycle("Schwinn", "turquoise");
+const salsaFargo = new Bicycle("Salsa Fargo", "burnt orange");
+const flyingMerkel = new Bicycle("Flying Merkel", "green");
+const bianchiVolpe = new Bicycle("Bianchi Volpe", "slate blue");
+
+Bicycle.funBicycles = [cruiser, salsaFargo, flyingMerkel, bianchiVolpe];
+
+Bicycle.parade();
+
+// The turquoise Schwinn goes "whoosh" and rolls along!
+// The burnt orange Salsa Fargo goes "whoosh" and rolls along!
+// The green Flying Merkel goes "whoosh" and rolls along!
+// The slate blue Bianci Volpe goes "whoosh" and rolls along!
 
 
 
 
+window.setTimeout(function () {
+  alert('HAMMERTIME');
+}, 2000);
+
+function hammerTime(time) {
+  window.setTimeout(function () {
+    alert(`${time} is HAMMERTIME`);
+  });
+}
+hammerTime("2:00pm")
 
 
+const readline = require('readline');
 
+const reader = readline.createInterface({
+  // it's okay if this part is magic; it just says that we want to
+  // 1. output the prompt to the standard output (console)
+  // 2. read input from the standard input (again, console)
 
+  input: process.stdin,
+  output: process.stdout
+});
 
+function teaAndBiscuits () {
+  reader.question('Would you like some tea?', function (res) {
+    console.log(`You replied ${res}.`);
+    reader.question('Would you like some biscuits?', function (res2) {
+      console.log(`You replied ${res2}.`);
+      const first = (res === 'yes') ? 'do' : 'don\'t';
+      const second = (res === 'yes') ? 'do' : 'don\'t';
 
+      console.log(`So you ${first} want tea and you ${second} want biscuits.`);
+      reader.close();
+    });
+  });
+}
 
+function Cat () {
+  this.name = 'Markov';
+  this.age = 3;
+}
+
+function Dog () {
+  this.name = 'Noodles';
+  this.age = 4;
+}
+
+Dog.prototype.chase = function (cat) {
+  console.log(`My name is ${this.name} and Im chasing ${cat.name}! Woof!`)
+}
+
+const Markov = new Cat ();
+const Noodles = new Dog ();
+
+Noodles.chase.call(Markov, Noodles)
+Noodles.chase(Markov);
+Noodles.chase.call(Noodles, Markov)
+Noodles.chase.call(Markov, Noodles);
+Noodles.chase.apply(Markov, [Noodles]);
 //
