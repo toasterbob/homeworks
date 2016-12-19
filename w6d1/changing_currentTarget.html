@@ -1,0 +1,18 @@
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
+
+<ul>
+  <li>Racecars</li>
+  <li>Lasers</li>
+  <li>Aeroplanes</li>
+</ul>
+
+<script>
+  var $listItems = $("li");
+  $listItems.on("mouseover", event => {
+    $listItems.attr("style", "background-color: white")
+    const currentTarget = event.currentTarget;
+    const $currentTarget = $(currentTarget);
+    $currentTarget.attr("style", "background-color: green");
+    alert($currentTarget.text());
+  })
+</script>

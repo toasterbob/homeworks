@@ -1,0 +1,116 @@
+<h1>Hello!</h1>
+
+<ul id="cats">List 1
+</ul>
+
+<ul id="cats2">List 2
+</ul>
+<ul id="cats3">List 3
+</ul>
+
+<style>
+  .red { background-color: red }
+  .green { background-color: green }
+</style>
+
+<ul id="cats3">
+  <li class="green">Markov</li>
+  <li class="red">Markov</li>
+</ul>
+
+<p>ALL PARAGRAPHS MUST DIE. ALL PARAGRAPHS MUST DIE.
+<br>
+  ALL PARAGRAPHS MUST DIE. ALL PARAGRAPHS MUST DIE.</p>
+
+
+
+<ul id="cats4"></ul>
+
+<form id="cat-form">
+  <label>
+    Say something!
+    <input type="text" name="cat[name]" id="cat_name">
+  </label>
+
+  <input type="submit" value="Add to List 1">
+</form>
+
+<script>
+  window.setTimeout( () => {
+    const ul = document.getElementById("cats");
+    const li = document.createElement("li");
+    li.textContent = "This is injected by JavaScript";
+    ul.appendChild(li);
+  }, 2000);
+  window.setTimeout( () => {
+    const ul = document.getElementById("cats2");
+    const li = document.createElement("li");
+    li.textContent = "This was also injected by JavaScript";
+    ul.appendChild(li);
+  }, 5000);
+  window.setTimeout( () => {
+    const ul = document.getElementById("cats");
+    const li = document.createElement("li");
+    li.textContent = "This was also injected by JavaScript.  Crazy!";
+    ul.appendChild(li);
+  }, 9000);
+  window.setTimeout( () => {
+    const ul = document.getElementById("cats2");
+    const li = document.createElement("li");
+    li.textContent = "Crazy! Crazy!";
+    ul.appendChild(li);
+  }, 11000);
+  let time = 2500;
+  for (let i = 0; i < 20; i++) {
+    window.setTimeout( () => {
+      const ul = document.getElementById("cats3");
+      const li = document.createElement("h2");
+      li.textContent = "I am watching you!  Crazy!";
+      ul.appendChild(li);
+    }, time);
+    time += 1500;
+  }
+
+  window.setTimeout( () => {
+    const reds = document.getElementsByClassName("red");
+    const greens = document.getElementsByClassName("green");
+
+    // swap the `HTMLElement#className` property
+    for (let i = 0; i < reds.length; i++) {
+      reds[i].className = "green";
+    }
+    for (let i = 0; i < greens.length; i++) {
+      greens[i].className = "red";
+    }
+
+    // disable the input
+    //document.getElementById("cat_name").disabled = true;
+
+    // Remove a paragraph from the document.
+    const paragraph = document.querySelector("p");
+    paragraph.parentElement.removeChild(paragraph);
+  }, 4000);
+
+  const catFormEl = document.getElementById("cat-form");
+  catFormEl.addEventListener("submit", event => {
+    // **cancel** the event; if the event were not canceled the browser
+    // would try to submit the form for real.
+    event.preventDefault();
+
+    // Get the name input element (type `HTMLInputElement`), get the
+    // value, and clear it.
+    const catNameInputEl = document.getElementById("cat_name")
+    const catName = catNameInputEl.value;
+    catNameInputEl.value = "";
+
+    // Get the ul of cats.
+    const ul = document.getElementById("cats");
+    // create an li element
+    const li = document.createElement("li");
+    // set the text of the li to be the value of the input field
+    li.textContent = catName;
+
+    // insert it as the last item in the ul.
+    ul.appendChild(li);
+  });
+</script>
